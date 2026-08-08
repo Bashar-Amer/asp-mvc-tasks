@@ -1,0 +1,32 @@
+@model IEnumerable<StudentTask.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-5">Students</h1>
+
+<p>
+    <a class="btn btn-outline-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Name</td>
+            <td>@(item.Age?.ToString() ?? "N/A")</td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
