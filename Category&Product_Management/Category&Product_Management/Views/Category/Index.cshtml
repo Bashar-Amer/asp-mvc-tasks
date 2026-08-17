@@ -1,0 +1,30 @@
+﻿@using Category_Product_Management.DTOs
+@model CategoryDTO[]
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center text-primary">Categories</h1>
+
+
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-5">
+        @foreach (var category in Model){
+            <div class="col">
+            <div class="card h-100 shadow-sm">
+                <img src="~/images/@category.ImagePath" alt="@category.Name image" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">@category.Name</h5>
+                        <a class="btn btn-success" asp-area="" asp-controller="Category" asp-action="Products" asp-route-id="@category.Id">View products</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+
+
+

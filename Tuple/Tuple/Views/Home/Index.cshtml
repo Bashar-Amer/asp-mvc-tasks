@@ -1,0 +1,30 @@
+﻿
+@model (Student student, Course course)
+
+@{
+    ViewData["Title"] = "Tuple task";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-3">@ViewData["Title"]</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Course name</th>
+                    <th scope="col">Instructor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.student.Name</td>
+                    <td>@Model.student.Age</td>
+                    <td>@Model.course.CourseName</td>
+                    <td>@Model.course.InstructorName</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

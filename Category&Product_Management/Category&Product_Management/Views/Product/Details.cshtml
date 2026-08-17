@@ -1,0 +1,34 @@
+@model Category_Product_Management.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Name</h1>
+
+<div class="container container-md my-5" >
+    <a asp-controller="Category" asp-action="Products" asp-route-id="@Model.CategoryId" class="btn btn-outline-secondary btn-sm mb-3 ">&larr; Back to Products</a>
+ 
+    <div class="card shadow border-0 rounded-4 overflow-hidden">
+        <div class="row g-0 align-items-center">
+
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <img src="~/images/@Model.ImagePath" class="img-fluid w-100" alt="@Model.Name Image" style="height: 400px; object-fit: cover;">
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="card-body p-4 p-lg-5">
+                    <h2 class="card-title fw-bold mb-3">@Model.Name</h2>
+                    <h4 class="text-success fw-bold mb-3">$@Model.Price</h4>
+                    <p class="card-text text-muted mb-4">
+                        @Model.Description
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

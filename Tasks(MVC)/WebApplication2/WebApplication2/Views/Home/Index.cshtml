@@ -1,0 +1,52 @@
+@using WebApplication2.DTOs
+@model (Category[] categories,ProductDTO[] products)
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Categories & Products</h1>
+
+
+<h2 class="mt-5">Categories</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var category in Model.categories) {
+        <tr>
+                <td><img src="~/images/@category.ImagePath" height="100" width="100"></td>
+            <td>@category.Name</td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+<h2 class="mt-5">Products</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.products)
+        {
+            <tr>
+                <td><img src="~/images/@product.ImagePath" height="100" width="100"></td>
+                <td>@product.Name</td>
+                <td>@product.CategoryName</td>
+            </tr>
+        }
+    </tbody>
+</table>
