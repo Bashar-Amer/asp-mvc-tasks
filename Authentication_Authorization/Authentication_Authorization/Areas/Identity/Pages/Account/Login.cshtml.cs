@@ -3,11 +3,11 @@
 
 
 using System.ComponentModel.DataAnnotations;
+using Authentication_Authorization.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApplication3.Models;
 
 namespace WebApplication3.Areas.Identity.Pages.Account;
 
@@ -115,11 +115,10 @@ public class LoginModel : PageModel
                 {
                     _logger.LogInformation("User logged in.");
 
-                    ;
-                    string redirectUrl = (await _userManager.IsInRoleAsync(user,"Admin")) ? 
-                        "~/Admin/HelloAdmin" : "~/User/HelloUser";
+                    string actionRedirect = (await _userManager.IsInRoleAsync(user,"Admin")) ?
+                        "AdminPanel" : "Dashboard";
                     
-                    return LocalRedirect(redirectUrl);
+                    return RedirectToRoute(new {controller = "Home",action= actionRedirect });
                    
                 }
               

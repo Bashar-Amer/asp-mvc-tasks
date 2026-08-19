@@ -2,13 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using Authentication_Authorization.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using WebApplication3.Models;
+
 
 
 namespace WebApplication3.Areas.Identity.Pages.Account
@@ -55,12 +56,6 @@ namespace WebApplication3.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-
-            [Required(ErrorMessage = "Please enter the age")]
-            [Range(1,100,ErrorMessage ="Age must be between 1 and 100")]
-            public int Age { get; set; }
-
-
         }
 
 
@@ -75,13 +70,12 @@ namespace WebApplication3.Areas.Identity.Pages.Account
             //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Email = Input.Email, EmailConfirmed = true, UserName = Input.Email.Split('@')[0], Age = Input.Age };
+                var user = new ApplicationUser { Email = Input.Email, EmailConfirmed = true, UserName = Input.Email.Split('@')[0] };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "User");
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
